@@ -1,0 +1,80 @@
+<style>
+#wg_modal_popup {
+ position:fixed;
+ top:0;
+ left:0;
+ bottom:0;
+ right:0;
+ background:#0000004d;
+ z-index:9999999;
+ display:none
+}
+#wg_modal_overlay {
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ height:100%
+}
+.wg_modal_main {
+ max-width:800px;
+ background:#fff;
+ padding:25px;
+ border-radius:4px;
+ box-shadow:0 0 10px rgba(0,0,0,0.2);
+ position:relative;
+ width:95%
+}
+.wg_modal_close {
+ position:absolute;
+ right:20px;
+ top:10px;
+ cursor:pointer;
+ font-size:20px
+}
+.wg_modal_close:hover {
+ color:red
+}
+.wg_modal_title h3 {
+ font-size:24px;
+ color:var(--as-blue);
+ margin-bottom:30px
+}
+.wg_modal_inner {
+ padding-top:20px
+}
+#wg_modal_popup .wpcf7-text,
+#wg_modal_popup .wpcf7-textarea,
+#wg_modal_popup .wpcf7-select {
+ background:#eee;
+ box-shadow:inset 2px 2px 2px rgba(0,0,0,0.1)
+}
+</style>
+
+
+<div id="wg_modal_popup">
+<div id="wg_modal_overlay">
+<div class="wg_modal_main">
+<div class="wg_modal_close">X </div>
+<div class="wg_modal_inner">
+<div class="wg_modal_title">
+<h3>Quick Enquiry</h3>
+</div>
+<div class="wg_modal_content">
+<?php echo do_shortcode('[contact-form-7 id="2500" title="Contact US"]'); ?>	
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script>
+<script>
+jQuery('#wg_open_form').on('click', function() {
+  jQuery('#wg_modal_popup').show();
+})
+jQuery('.wg_modal_close').on('click', function() {
+  jQuery('#wg_modal_popup').hide();
+})	
+</script>
+</script>
