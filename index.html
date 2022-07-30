@@ -73,6 +73,10 @@
 
 
 <script>
+jQuery( document ).ready(function() {
+  jQuery(".wg-open-popup").attr("href", "javascript: void(0);");
+});	
+ 
 jQuery('.wg_open_form').on('click', function() {
   jQuery('#wg_modal_popup').show();
 })
