@@ -1,0 +1,114 @@
+<style>
+	#sb_modal_popup {
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background: #0000004d;
+		z-index: 99999;
+		display: none
+	}
+
+	#sb_modal_overlay {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%
+	}
+
+	.sb_modal_main {
+		max-width: 500px;
+		background: #fff;
+		border-radius: 4px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		position: relative;
+		width: 95%;
+	}
+
+	.sb_modal_close {
+		position: absolute;
+		right: 20px;
+		top: 10px;
+		cursor: pointer;
+		font-size: 20px;
+		color: #000;
+	}
+
+	.sb_modal_close:hover {
+		color: red
+	}
+
+	.sb_modal_title h3 {
+		font-size: 26px;
+		color: #07aa40;
+		margin-bottom: 30px
+	}
+</style>
+
+
+
+<div id="sb_modal_popup">
+	<div id="sb_modal_overlay">
+		<div class="sb_modal_main">
+			<div class="sb_modal_close">X</div>
+			<div class="sb_modal_inner">
+				<div class="sb_modal_content">
+					<a href="#omw-855" class="omw-open-modal"><img
+							src="https://www.startanybusiness.ae/wp-content/uploads/2023/05/sab-popup-banner-img.jpg" /></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	// set cookie function (same as before)
+	function setCookie(name, value, days) {
+		var expires = '';
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+			expires = '; expires=' + date.toUTCString();
+		}
+		document.cookie = name + '=' + value + expires + '; path=/';
+	}
+
+	// get cookie function (same as before)
+	function getCookie(name) {
+		var nameEQ = name + '=';
+		var cookies = document.cookie.split(';');
+		for (var i = 0; i < cookies.length; i++) {
+			var cookie = cookies[i];
+			while (cookie.charAt(0) == ' ') cookie = cookie.substring(1, cookie.length);
+			if (cookie.indexOf(nameEQ) == 0) return cookie.substring(nameEQ.length, cookie.length);
+		}
+		return null;
+	}
+
+	// delete cookie function (same as before)
+	function deleteCookie(name) {
+		document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+	}
+
+	jQuery(document).ready(function ($) {
+		var popupClosed = getCookie('popup_closed');
+
+		// check if cookie exists and is set to 'true'
+		if (popupClosed === 'true') {
+			$('#sb_modal_popup').hide(); // hide popup if cookie is set to 'true'
+		} else {
+			// wait for 5 seconds before showing popup
+			setTimeout(function () {
+				$('#sb_modal_popup').fadeIn();
+			}, 3000);
+		}
+
+		// close popup and set cookie
+		$('.sb_modal_close, #omw-855 .omw-close-modal').on('click', function () {
+			$('#sb_modal_popup').fadeOut();
+			setCookie('popup_closed', 'true', 1); // set cookie to expire in 1 day
+		});
+	});
+</script>
